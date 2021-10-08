@@ -1,0 +1,27 @@
+# Activate MOLINFO functionalities
+a1: ANGLE ATOMS=2,1,6
+a2: ANGLE ATOMS=1,2,3
+a3: ANGLE ATOMS=2,3,4
+a4: ANGLE ATOMS=3,4,5
+a5: ANGLE ATOMS=4,5,6
+a6: ANGLE ATOMS=1,6,5
+MATHEVAL ...
+   LABEL=q
+   ARG=a1,a2,a3,a4,a5,a6
+   VAR=x1,x2,x3,x4,x5,x6
+   FUNC=(x1+x2+x3+x4+x5+x6)-11.463671592949153
+   PERIODIC=NO
+... MATHEVAL
+PRINT ARG=a1,a2,a3,a4,a5,a6,q FILE=colvar STRIDE=10
+
+# Activate well-tempered metadynamics in phi
+METAD ...
+   ARG=q
+   # Deposit a Gaussian every 500 time steps, with initial height equal to 1.2 kJ/mol
+   PACE=100 HEIGHT=0.8 SIGMA=0.1
+   # Gaussians will be written to file and also stored on grid
+   FILE=HILLS 
+   LABEL=metaplanar
+... METAD
+
+PRINT ARG=a1,a2,a3,a4,a5,a6,q,metaplanar.bias FILE=COLVAR STRIDE=10
