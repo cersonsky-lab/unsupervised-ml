@@ -3,7 +3,7 @@
     verbosity = 'high'
     restart_mode = 'from_scratch'
     tprnfor = .true.
-    nstep = 500000
+    nstep = 5
     prefix = 'md',
     forc_conv_thr = 1.0D-4,
     etot_conv_thr = 1.0D-3,
