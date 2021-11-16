@@ -1,5 +1,5 @@
 &CONTROL
-    calculation = 'scf'
+    calculation = 'relax'
     verbosity = 'high'
     restart_mode = 'from_scratch'
     tprnfor = .true.
