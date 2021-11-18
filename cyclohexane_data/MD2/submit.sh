@@ -3,7 +3,7 @@
 #SBATCH --partition=Slim
 #SBATCH -n 24
 #SBATCH -N 1
-#SBATCH -t 96:00:00
+#SBATCH -t 480:00:00
 
 set -u
 

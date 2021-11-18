@@ -33,10 +33,18 @@ energy = np.array([a.info["energy_eV"] for a in traj])
 def autocorr(x):
     ac = np.zeros(len(x) // 2)
     xm = np.mean(x)
+    xmm = np.multiply(xm, x)
+    xdenom = [0, *np.cumsum(x - xm) ** 2.0]
+
     for k in range(len(x) // 2):
         ac[k] = (
-            sum([(x[i] - xm) * (x[i + k] - xm) for i in range(len(x) - k)])
-            / sum([(x[i] - xm) for i in range(len(x) - k)]) ** 2
+            np.sum(
+                np.multiply(x[: len(x) - k], x[k:])
+                - xmm[: len(x) - k]
+                - xmm[k:]
+                + xm ** 2.0
+            )
+            / xdenom[len(x) - k]
         )
     return ac
 
