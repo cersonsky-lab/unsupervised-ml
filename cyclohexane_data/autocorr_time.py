@@ -7,7 +7,7 @@ parser = argparse.ArgumentParser(
 )
 parser.add_argument(
     "-f",
-    "filename",
+    "--filename",
     metavar="f",
     type=str,
     nargs="+",
@@ -16,19 +16,18 @@ parser.add_argument(
 )
 parser.add_argument(
     "-t",
-    "threshold",
+    "--threshold",
     metavar="T",
     type=float,
     nargs=1,
     help="threshold to determine tao",
-    default=0.1,
+    default=None,
 )
 
 args = parser.parse_args()
 
 traj = read(args.filename, ":")
 energy = np.array([a.info["energy_eV"] for a in traj])
-ac_thresh = args.threshold
 
 
 def autocorr(x):
@@ -43,6 +42,16 @@ def autocorr(x):
 
 
 ace = autocorr(energy)
+
+if args.threshold is not None:
+    ac_thresh = args.threshold
+else:
+    from matplotlib import pyplot as plt
+
+    plt.loglog(ace)
+    plt.show()
+
+    ac_thresh = float(input("Threshold?\t"))
 tao = np.where(ace < ac_thresh)[0][0]
 
 ac_frames = traj[::tao]

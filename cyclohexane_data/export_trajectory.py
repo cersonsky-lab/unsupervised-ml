@@ -6,7 +6,7 @@ parser = argparse.ArgumentParser(
 )
 parser.add_argument(
     "-f",
-    "filename",
+    "--filename",
     metavar="f",
     type=str,
     nargs="+",
