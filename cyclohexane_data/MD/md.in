@@ -1,0 +1,59 @@
+&CONTROL
+    calculation = 'md'
+    verbosity = 'high'
+    restart_mode = 'from_scratch'
+    tprnfor = .true.
+    nstep = 100000
+    prefix = 'temp',
+    forc_conv_thr = 1.0D-4,
+    etot_conv_thr = 1.0D-3,
+/
+&SYSTEM
+	ibrav = 0,
+	nat = 18,
+	ntyp = 2,
+ 	ecutwfc = 60.0D0,
+	ecutrho = 240.0D0,
+	vdw_corr = 'dft-d',
+	nosym=.true.
+	nbnd = 21,
+/
+&ELECTRONS
+	conv_thr = 1.D-8,
+  	mixing_beta = 0.5D0,
+	electron_maxstep = 300,
+	diagonalization='cg',
+/
+&IONS
+        ion_temperature = 'andersen',
+        tempw = 300,
+/
+&CELL
+/
+ATOMIC_SPECIES
+H	1.0079	H.pbe-tm-new-gipaw-dc.UPF
+C	12.0107	C.pbe-tm-new-gipaw-dc.UPF
+ATOMIC_POSITIONS angstrom
+C 8.942505 7.5042015 7.2449625
+C 8.217537 8.751345 7.755015
+C 6.7750905 8.7471285 7.2449745
+C 6.0575265 7.495758 7.755015
+C 6.7824465 6.248697 7.2449955
+C 8.224899 6.252915 7.755036
+H 8.942526 7.504278 6.1550325
+H 9.9701565 7.507233 7.6083165
+H 8.2175745 8.7512715 8.845026
+H 8.728797 9.6428445 7.391742
+H 8.7413595 5.3644365 7.391697
+H 8.224872 6.2528355 8.8449675
+H 6.258624 9.6356055 7.6083135
+H 6.7751595 8.7471225 6.1550115
+H 6.0574575 7.495764 8.844978
+H 5.029875 7.492728 7.391661
+H 6.7823925 6.248634 6.155001
+H 6.2711865 5.3571975 7.6082685
+
+CELL_PARAMETERS angstrom
+15.0 0.0 0.0
+0.0 15.0 0.0
+0.0 0.0 15.0
