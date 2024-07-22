@@ -1,2 +1,0 @@
-cyclohexane_data/MD/trajectory.xyz filter=lfs diff=lfs merge=lfs -text
-cyclohexanes.json filter=lfs diff=lfs merge=lfs -text
